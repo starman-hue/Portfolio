@@ -251,7 +251,7 @@ figcaption a{ color:var(--ambre); }
       <div class="texte">
         <p>Un battle royale multijoueur en 3D, jouable dans le navigateur, que je développe seul depuis deux mois. Vingt joueurs entrent dans le même donjon, revendiquent des salles, s'allient et se trahissent. La mort est définitive et chaque partie repart de zéro, dans l'esprit die and retry.</p>
         <p>Je l'ai commencé sous Unreal Engine, puis je suis passé sous Godot pour mieux travailler avec l'IA agentique. Des agents écrivent le code avec moi, et près de cinq cents tests automatisés valident chaque modification.</p>
-        <p>Le jeu a commencé en pixel art 2D, avec un outil d'édition animé que j'ai développé avec Claude dans Blender. Il est passé depuis en 3D. Les objets partent de concepts générés par IA, deviennent une 3D haute définition, puis je les remodélise et je les texture à la main. La section Méthode suit un objet de bout en bout. Je garde la direction artistique et la validation de chaque asset.</p>
+        <p>Le jeu a commencé en pixel art 2D, avec un outil d'édition animé que j'ai développé avec Claude dans Blender. Il est passé depuis en 3D. Les objets partent de concepts générés par IA, deviennent une 3D haute définition, puis passent en retopologie et en cuisson de textures. La section Méthode suit un objet de bout en bout. Je garde la direction artistique et la validation de chaque asset.</p>
         <p>Ce que le projet m'apprend, c'est que l'IA va vite mais ne tient pas un univers toute seule. La cohérence et la validation restent un travail d'artiste.</p>
         <div class="fiche px">
           <h3>Fiche</h3>
@@ -259,7 +259,7 @@ figcaption a{ color:var(--ambre); }
             <div><dt>Statut</dt><dd><span class="badge">En cours</span></dd></div>
             <div><dt>Rôle</dt><dd>Conception, art et direction du code, en solo</dd></div>
             <div><dt>Outils</dt><dd>Godot 4, Unreal Engine 5, Blender, Claude Code, Codex, GPT Image 2, Hunyuan3D, Stable Audio 3</dd></div>
-            <div><dt>Part de l'IA</dt><dd><div class="ia" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i></div><span class="ia-lab">Code écrit avec des agents, modèles 3D générés puis remodélisés à la main</span></dd></div>
+            <div><dt>Part de l'IA</dt><dd><div class="ia" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i></div><span class="ia-lab">Code écrit avec des agents, modèles 3D générés puis retopologisés</span></dd></div>
           </dl>
         </div>
       </div>
@@ -385,7 +385,7 @@ figcaption a{ color:var(--ambre); }
       <li class="px-s">
         <span class="n">4</span>
         <img src="media/methode-amphore-wire.jpg" alt="Maillage basse définition de l'amphore en fil de fer" loading="lazy">
-        <div class="etape-corps"><h4>Remodélisation</h4><p>Je reconstruis les volumes à la main, sans décimation automatique. 888 triangles.</p></div>
+        <div class="etape-corps"><h4>Retopologie</h4><p>Un algorithme de retopologie tire de la source un maillage léger et propre. 888 triangles.</p></div>
       </li>
       <li class="px-s">
         <span class="n">5</span>
@@ -423,7 +423,7 @@ figcaption a{ color:var(--ambre); }
       <div class="ligne-outil">
         <div class="role">3D</div>
         <div class="items">
-          <div class="item"><span class="k">Hunyuan3D</span><span class="etat prod">en production</span><p>Sources haute définition des props, toujours remodélisées ensuite.</p></div>
+          <div class="item"><span class="k">Hunyuan3D</span><span class="etat prod">en production</span><p>Sources haute définition des props, toujours retopologisées ensuite.</p></div>
           <div class="item"><span class="k">Tripo3D, TripoSR, Trellis</span><span class="etat test">testés</span><p>Essayés sur des props. Pas retenus pour l'instant, le résultat ne tenait pas la charte.</p></div>
         </div>
       </div>
