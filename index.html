@@ -1,0 +1,489 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta property="og:title" content="Louan Esnault, portfolio">
+<meta property="og:description" content="Graphiste 3D et IA générative. Jeu patrimonial publié, jeu expérimental développé avec des agents de code, docu-fiction IA, visites virtuelles temps réel.">
+<meta property="og:image" content="https://starman-hue.github.io/portfolio/media/tribute-hub-portail.jpg">
+<meta property="og:type" content="website">
+<title>Louan Esnault, portfolio</title>
+<meta name="description" content="Graphiste 3D et IA générative. Jeu patrimonial publié, jeu expérimental développé avec des agents de code, docu-fiction IA, visites virtuelles temps réel.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400;600&family=IBM+Plex+Sans:wght@400;500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  color-scheme: dark;
+  --nuit:#16140f; --nuit2:#1e1b14; --nuit3:#26221a; --ligne:#3d3526;
+  --parch:#efdfbb; --parch2:#e4cf9f; --encre:#2b2016; --encre2:#5a4631; --trait:#8a6a43;
+  --braise:#c2512f; --ambre:#e6a23c; --mousse:#8fa34a; --texte:#e9dcc0; --texte2:#b9a57c;
+  --pix:"Pixelify Sans", "Courier New", monospace;
+  --sans:"IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
+  --mono:"IBM Plex Mono", Consolas, monospace;
+}
+*{ box-sizing:border-box; }
+body{
+  margin:0; background:var(--nuit); color:var(--texte); font-family:var(--sans); font-size:16px; line-height:1.6;
+  background-image:
+    radial-gradient(900px 600px at 90% -10%, rgba(230,162,60,.13), transparent 70%),
+    radial-gradient(700px 600px at -10% 40%, rgba(94,107,47,.16), transparent 70%),
+    linear-gradient(rgba(255,255,255,.022) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.022) 1px, transparent 1px);
+  background-size:auto, auto, 8px 8px, 8px 8px;
+}
+a{ color:inherit; }
+:focus-visible{ outline:2px solid var(--ambre); outline-offset:3px; }
+img, video{ max-width:100%; display:block; }
+.wrap{ max-width:1180px; margin:0 auto; padding-inline:clamp(16px, 4vw, 40px); }
+
+/* coins en escalier, la signature visuelle */
+.px{ clip-path:polygon(0 12px,6px 12px,6px 6px,12px 6px,12px 0,calc(100% - 12px) 0,calc(100% - 12px) 6px,calc(100% - 6px) 6px,calc(100% - 6px) 12px,100% 12px,100% calc(100% - 12px),calc(100% - 6px) calc(100% - 12px),calc(100% - 6px) calc(100% - 6px),calc(100% - 12px) calc(100% - 6px),calc(100% - 12px) 100%,12px 100%,12px calc(100% - 6px),6px calc(100% - 6px),6px calc(100% - 12px),0 calc(100% - 12px)); }
+.px-s{ clip-path:polygon(0 6px,3px 6px,3px 3px,6px 3px,6px 0,calc(100% - 6px) 0,calc(100% - 6px) 3px,calc(100% - 3px) 3px,calc(100% - 3px) 6px,100% 6px,100% calc(100% - 6px),calc(100% - 3px) calc(100% - 6px),calc(100% - 3px) calc(100% - 3px),calc(100% - 6px) calc(100% - 3px),calc(100% - 6px) 100%,6px 100%,6px calc(100% - 3px),3px calc(100% - 3px),3px calc(100% - 6px),0 calc(100% - 6px)); }
+
+.tag{ font-family:var(--pix); font-size:.78rem; letter-spacing:.16em; text-transform:uppercase; }
+
+/* barre du haut */
+.hud{ position:sticky; top:env(safe-area-inset-top, 0px); z-index:10; background:rgba(22,20,15,.92); backdrop-filter:blur(6px); border-bottom:1px solid var(--ligne); }
+.hud .wrap{ display:flex; align-items:center; justify-content:space-between; gap:16px; padding-block:10px; }
+.hud .nom{ font-family:var(--pix); font-weight:600; font-size:1.05rem; letter-spacing:.04em; text-decoration:none; color:var(--parch); }
+.hud nav{ display:flex; gap:18px; flex-wrap:wrap; }
+.hud nav a{ font-family:var(--pix); font-size:.8rem; letter-spacing:.12em; text-transform:uppercase; text-decoration:none; color:var(--texte2); }
+.hud nav a:hover{ color:var(--ambre); }
+
+/* ecran titre */
+.titre{ display:grid; grid-template-columns:minmax(0,5fr) minmax(0,7fr); gap:clamp(24px,4vw,56px); align-items:center; padding-block:56px 48px; }
+.titre .tag{ color:var(--ambre); }
+h1{ font-family:var(--pix); font-weight:600; font-size:clamp(2.6rem,6vw,4.4rem); line-height:.95; color:var(--parch); margin:12px 0 14px; letter-spacing:.01em; }
+.classe{ font-size:clamp(1.1rem,2vw,1.35rem); color:var(--parch2); margin:0 0 18px; font-weight:500; }
+.classe span{ color:var(--ambre); }
+.intro{ max-width:34em; color:var(--texte); margin:0 0 22px; }
+.stats{ display:flex; flex-wrap:wrap; gap:10px; }
+.stat{ display:flex; align-items:center; gap:8px; background:#0c0b08; border:1px solid var(--ligne); padding:6px 12px; }
+.stat::before{ content:""; width:8px; height:8px; background:var(--ambre); }
+.stat .k{ font-family:var(--pix); font-weight:400; color:var(--parch); font-size:.9rem; }
+.stat .v{ font-family:var(--mono); font-size:.78rem; color:var(--texte2); }
+.ecran{ position:relative; background:var(--parch); padding:10px; }
+.ecran video{ width:100%; aspect-ratio:16/9; object-fit:cover; background:#000; }
+.ecran .leg{ position:absolute; left:22px; bottom:22px; background:var(--nuit); color:var(--parch); padding:5px 10px; font-family:var(--pix); font-size:.78rem; letter-spacing:.1em; text-transform:uppercase; }
+
+/* selection de niveau */
+.section-tete{ display:flex; align-items:baseline; justify-content:space-between; gap:16px; flex-wrap:wrap; margin:0 0 20px; }
+h2{ font-family:var(--pix); font-weight:600; font-size:clamp(1.5rem,3vw,2rem); color:var(--parch); margin:0; display:flex; align-items:center; gap:12px; text-wrap:balance; }
+h2::before{ content:""; width:12px; height:12px; background:var(--braise); box-shadow:5px 5px 0 var(--ambre); flex:none; }
+.section-tete p{ margin:0; color:var(--texte2); font-size:.95rem; }
+.niveaux{ display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:16px; padding-bottom:24px; }
+.carte{ display:block; text-decoration:none; background:var(--nuit2); border:1px solid var(--ligne); transition:transform .15s, border-color .15s; }
+.carte:hover{ transform:translateY(-3px); border-color:var(--ambre); }
+.carte img{ width:100%; aspect-ratio:16/9; object-fit:cover; }
+.carte .bas{ padding:12px 14px 14px; display:flex; justify-content:space-between; gap:10px; align-items:baseline; }
+.carte .t{ font-family:var(--pix); font-size:1.05rem; color:var(--parch); }
+.carte .s{ font-family:var(--mono); font-size:.74rem; color:var(--texte2); white-space:nowrap; }
+
+/* niveau detaille */
+.niveau{ padding-block:56px; border-top:1px dashed var(--ligne); }
+.niveau .numero{ color:var(--braise); margin-bottom:8px; display:block; }
+.corps{ display:grid; grid-template-columns:minmax(0,7fr) minmax(0,4fr); gap:28px; margin-top:22px; align-items:start; }
+.media{ display:grid; gap:12px; }
+.media video, .media img{ width:100%; aspect-ratio:16/9; object-fit:cover; background:#000; border:1px solid var(--ligne); }
+.galerie{ display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px; }
+figure{ margin:0; }
+figcaption{ font-family:var(--mono); font-size:.76rem; color:var(--texte2); margin-top:6px; }
+.texte p{ margin:0 0 14px; max-width:38em; }
+
+.fiche{ background:var(--parch); color:var(--encre); padding:20px 20px 18px; position:relative; }
+.fiche::after{ content:""; position:absolute; inset:8px; border:1px solid var(--trait); opacity:.5; pointer-events:none; }
+.fiche h3{ font-family:var(--pix); font-weight:600; font-size:.95rem; letter-spacing:.12em; text-transform:uppercase; margin:0 0 12px; }
+.fiche dl{ margin:0; display:grid; gap:10px; }
+.fiche dt{ font-family:var(--pix); font-size:.72rem; letter-spacing:.14em; text-transform:uppercase; color:var(--braise); }
+.fiche dd{ margin:2px 0 0; font-size:.9rem; line-height:1.45; }
+.badge{ display:inline-block; font-family:var(--pix); font-size:.72rem; letter-spacing:.1em; text-transform:uppercase; background:var(--encre); color:var(--ambre); padding:2px 8px; }
+.ia{ display:flex; gap:4px; margin:4px 0 4px; }
+.ia i{ width:22px; height:9px; background:rgba(43,32,22,.14); border:1px solid rgba(43,32,22,.3); }
+.ia i.on{ background:var(--braise); border-color:var(--braise); }
+.ia-lab{ font-family:var(--mono); font-size:.72rem; color:var(--encre2); }
+
+/* bonus */
+.bonus{ display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:20px; margin-top:22px; }
+.bonus article{ background:var(--nuit2); border:1px solid var(--ligne); }
+.bonus video{ width:100%; aspect-ratio:16/9; object-fit:cover; background:#000; }
+.bonus .txt{ padding:14px 16px 16px; }
+.bonus h3{ font-family:var(--pix); font-weight:600; font-size:1.15rem; color:var(--parch); margin:0 0 4px; }
+.bonus p{ margin:0; font-size:.92rem; color:var(--texte); }
+.bonus .s{ font-family:var(--mono); font-size:.74rem; color:var(--texte2); display:block; margin-bottom:6px; }
+
+/* methode */
+.methode{ display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:16px; margin-top:22px; }
+.regle{ background:var(--parch); color:var(--encre); padding:20px; }
+.regle p{ margin:0; font-size:.93rem; line-height:1.5; }
+
+.chapeau{ max-width:44em; margin:14px 0 0; color:var(--texte); font-size:1.05rem; }
+.sous{ font-family:var(--pix); font-weight:600; font-size:1.2rem; color:var(--parch); margin:42px 0 4px; }
+.sous-note{ margin:0 0 16px; color:var(--texte2); font-size:.95rem; }
+.fab{ list-style:none; margin:0; padding:0; display:grid; grid-template-columns:repeat(5,minmax(0,1fr)); gap:12px; }
+.fab li{ position:relative; background:var(--nuit2); border:1px solid var(--ligne); display:flex; flex-direction:column; }
+.fab li:not(:last-child)::after{ content:""; position:absolute; right:-11px; top:40%; width:10px; height:2px; background:var(--ambre); z-index:1; }
+.fab img{ width:100%; aspect-ratio:1; object-fit:cover; background:#3a3a3a; }
+.fab .n{ position:absolute; top:8px; left:8px; z-index:1; font-family:var(--pix); font-size:.8rem; background:var(--nuit); color:var(--ambre); padding:1px 7px; }
+.etape-corps{ padding:12px 14px 14px; }
+.etape-corps h4{ font-family:var(--pix); font-weight:600; font-size:1rem; color:var(--parch); margin:0 0 4px; }
+.etape-corps p{ margin:0; font-size:.86rem; line-height:1.45; color:var(--texte); }
+.fab li.etape-texte{ background:var(--parch); }
+.etape-texte .etape-corps{ padding-top:40px; }
+.etape-texte .etape-corps h4, .etape-texte .etape-corps p{ color:var(--encre); }
+.etape-texte blockquote{ margin:12px 0 0; padding:10px 0 0; border-top:1px dashed var(--trait); font-size:.86rem; line-height:1.45; color:var(--encre2); font-style:italic; }
+.revue{ display:grid; grid-template-columns:1fr 1fr 1.2fr; gap:12px; margin-top:12px; align-items:stretch; }
+.revue img{ width:100%; aspect-ratio:16/9; object-fit:cover; border:1px solid var(--ligne); }
+.revue-txt{ background:var(--nuit2); border:1px solid var(--ligne); padding:14px 16px; }
+.revue-txt h4{ font-family:var(--pix); font-weight:600; font-size:1rem; color:var(--parch); margin:0 0 6px; }
+.revue-txt p{ margin:0; font-size:.9rem; line-height:1.5; }
+.inventaire{ background:var(--parch); color:var(--encre); padding:6px 20px; }
+.ligne-outil{ display:grid; grid-template-columns:90px 1fr; gap:16px; padding:14px 0; border-top:1px dashed var(--trait); }
+.ligne-outil:first-child{ border-top:0; }
+.role{ font-family:var(--pix); font-size:.8rem; letter-spacing:.14em; text-transform:uppercase; color:var(--braise); padding-top:3px; }
+.items{ display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px 22px; }
+.item .k{ font-family:var(--pix); font-weight:600; font-size:1rem; margin-right:8px; }
+.item p{ margin:3px 0 0; font-size:.88rem; line-height:1.45; color:var(--encre); }
+.etat{ display:inline-block; font-family:var(--pix); font-size:.68rem; letter-spacing:.1em; text-transform:uppercase; padding:1px 7px; vertical-align:2px; }
+.etat.prod{ background:var(--encre); color:var(--ambre); }
+.etat.passe{ color:var(--encre2); border:1px solid var(--encre2); }
+.etat.test{ color:var(--braise); border:1px solid var(--braise); }
+.regle h4{ font-family:var(--pix); font-weight:600; font-size:1.05rem; margin:0 0 8px; }
+figcaption a{ color:var(--ambre); }
+
+/* contact */
+.fin{ padding-block:56px 64px; border-top:1px dashed var(--ligne); }
+.contact{ display:grid; grid-template-columns:auto 1fr; gap:24px; align-items:center; background:var(--nuit2); border:1px solid var(--ligne); padding:22px; margin-top:22px; }
+.contact img{ width:112px; height:112px; object-fit:cover; filter:sepia(.25); border:6px solid var(--parch); }
+.contact .l{ display:flex; flex-wrap:wrap; gap:8px 26px; font-family:var(--mono); font-size:.9rem; }
+.contact .l span{ color:var(--texte2); }
+.contact p{ margin:0 0 10px; }
+.pied{ margin-top:28px; display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap; color:#8f7f5f; }
+
+@media (max-width:900px){
+  .titre, .corps{ grid-template-columns:1fr; }
+  .niveaux{ grid-template-columns:repeat(2,minmax(0,1fr)); }
+  .methode{ grid-template-columns:1fr; }
+  .fab{ grid-template-columns:repeat(3,minmax(0,1fr)); }
+  .fab li:nth-child(3n)::after{ display:none; }
+  .revue{ grid-template-columns:1fr 1fr; }
+  .revue-txt{ grid-column:1 / -1; }
+  .items{ grid-template-columns:1fr; }
+}
+@media (max-width:600px){
+  .niveaux, .bonus, .galerie{ grid-template-columns:1fr; }
+  .hud nav{ display:none; }
+  .contact{ grid-template-columns:1fr; }
+  .fab{ grid-template-columns:repeat(2,minmax(0,1fr)); }
+  .fab li::after{ display:none; }
+  .ligne-outil{ grid-template-columns:1fr; gap:6px; }
+}
+@media (prefers-reduced-motion: reduce){
+  .carte{ transition:none; }
+  .carte:hover{ transform:none; }
+}
+</style>
+</head>
+<body>
+<header class="hud">
+  <div class="wrap">
+    <a class="nom" href="#haut">Louan Esnault</a>
+    <nav aria-label="Sections">
+      <a href="#niveaux">Niveaux</a>
+      <a href="#methode">Méthode</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main id="haut">
+  <section class="wrap titre">
+    <div>
+      <div class="tag">Portfolio · 2026</div>
+      <h1>Louan Esnault</h1>
+      <p class="classe">Graphiste 3D <span>&amp;</span> IA générative, temps réel</p>
+      <p class="intro">Je fais de la 3D pour le jeu et le patrimoine, et je cherche depuis plusieurs mois comment l'IA générative trouve sa place dans une vraie chaîne de production. Voici les projets où je l'ai testée, et ceux où je m'en suis passé.</p>
+      <div class="stats">
+        <div class="stat"><span class="k">3D</span><span class="v">depuis 2021</span></div>
+        <div class="stat"><span class="k">ComfyUI</span><span class="v">depuis 2023</span></div>
+        <div class="stat"><span class="k">Agents de code</span><span class="v">au quotidien</span></div>
+      </div>
+    </div>
+    <div class="ecran px">
+      <video src="media/saint-roman.mp4" poster="media/saint-roman.jpg" autoplay muted loop playsinline preload="auto" aria-label="Extrait de Secrets de Saint-Roman, intérieur de l'abbaye troglodyte"></video>
+      <div class="leg px-s">Secrets de Saint-Roman</div>
+    </div>
+  </section>
+
+  <section class="wrap" id="niveaux" aria-labelledby="t-niveaux">
+    <div class="section-tete">
+      <h2 id="t-niveaux">Sélection de niveau</h2>
+      <p>Les projets principaux, du plus récent au plus ancien.</p>
+    </div>
+    <div class="niveaux">
+      <a class="carte px-s" href="#tribute"><img src="media/tribute-hub-portail.jpg" alt="" loading="lazy"><div class="bas"><span class="t">Tribute3D</span><span class="s">2026 · en cours</span></div></a>
+      <a class="carte px-s" href="#otzi"><img src="media/otzi.jpg" alt="" loading="lazy"><div class="bas"><span class="t">Ötzi</span><span class="s">en production</span></div></a>
+      <a class="carte px-s" href="#saint-roman"><img src="media/saint-roman-falaises.jpg" alt="" loading="lazy"><div class="bas"><span class="t">Saint-Roman</span><span class="s">publié</span></div></a>
+      <a class="carte px-s" href="#geofit"><img src="media/louvre.jpg" alt="" loading="lazy"><div class="bas"><span class="t">Visites virtuelles</span><span class="s">2022-2024</span></div></a>
+      <a class="carte px-s" href="#bonus"><img src="media/vestiges.jpg" alt="" loading="lazy"><div class="bas"><span class="t">VESTIGES</span><span class="s">2024</span></div></a>
+      <a class="carte px-s" href="#bonus"><img src="media/shield.jpg" alt="" loading="lazy"><div class="bas"><span class="t">Shield Run</span><span class="s">Noct, Paris</span></div></a>
+    </div>
+  </section>
+
+  <!-- TRIBUTE -->
+  <section class="wrap niveau" id="tribute" aria-labelledby="t-tribute">
+    <span class="tag numero">Niveau 1 · projet expérimental</span>
+    <h2 id="t-tribute">Tribute3D</h2>
+    <div class="corps">
+      <div class="media">
+        <figure><video class="film" src="media/tribute-prototype.mp4" poster="media/tribute-prototype.jpg" playsinline preload="none" controls aria-label="Prototype jouable de Tribute3D, septembre 2026"></video><figcaption>Prototype jouable au 25 septembre 2026 · <a href="https://youtu.be/5SBH659Y-yU" target="_blank" rel="noopener">voir sur YouTube</a></figcaption></figure>
+        <div class="galerie">
+          <figure><img src="media/tribute-hub-portail.jpg" alt="Le village de Tribute3D la nuit, un personnage près d'un feu de camp, minicarte en parchemin" loading="lazy"><figcaption>Le village, point de départ</figcaption></figure>
+          <figure><img src="media/tribute-03-vue-large.jpg" alt="L'arène, avec le classement et la minicarte" loading="lazy"><figcaption>L'arène et son classement en direct</figcaption></figure>
+          <figure><img src="media/tribute-createur-rouge-sang.jpg" alt="Écran de création de personnage sur parchemin" loading="lazy"><figcaption>Créateur de personnage</figcaption></figure>
+          <figure><img src="media/tribute-interpellation-trahir.jpg" alt="Trois personnages dans un couloir, une fenêtre d'alliance ouverte" loading="lazy"><figcaption>Alliance et trahison entre joueurs</figcaption></figure>
+        </div>
+        <div class="galerie">
+          <figure><video src="media/tribute-unreal.mp4" poster="media/tribute-unreal.jpg" muted loop playsinline preload="none" controls aria-label="Premier prototype sous Unreal Engine"></video><figcaption>Premier prototype, sous Unreal Engine</figcaption></figure>
+          <figure><video src="media/plugin-blender.mp4" poster="media/plugin-blender.jpg" muted loop playsinline preload="none" controls aria-label="Démonstration de l'outil de pixel art animé sous Blender"></video><figcaption>Outil de pixel art animé sous Blender, développé avec Claude (accéléré)</figcaption></figure>
+        </div>
+      </div>
+      <div class="texte">
+        <p>Un RPG d'action en 3D que je développe seul depuis deux mois. Vingt participants dans un même donjon, des salles à revendiquer, des alliances qu'on peut trahir à un prix connu d'avance.</p>
+        <p>Je l'ai commencé sous Unreal Engine, puis je suis passé sous Godot pour mieux travailler avec l'IA agentique. Des agents écrivent le code avec moi, et près de cinq cents tests automatisés valident chaque modification.</p>
+        <p>Pour l'art, j'ai développé avec Claude un outil d'édition de pixel art animé dans Blender. Les sprites sortent de générations IA que j'affine ensuite à la main dans cet outil. Je garde la direction artistique et la validation de chaque asset.</p>
+        <p>Ce que le projet m'apprend, c'est que l'IA va vite mais ne tient pas un univers toute seule. La cohérence et la validation restent un travail d'artiste.</p>
+        <div class="fiche px">
+          <h3>Fiche</h3>
+          <dl>
+            <div><dt>Statut</dt><dd><span class="badge">En cours</span></dd></div>
+            <div><dt>Rôle</dt><dd>Conception, art et direction du code, en solo</dd></div>
+            <div><dt>Outils</dt><dd>Godot 4, Unreal Engine 5, Blender, Claude Code, Codex, GPT Image 2, Hunyuan3D, Stable Audio 3</dd></div>
+            <div><dt>Part de l'IA</dt><dd><div class="ia" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i></div><span class="ia-lab">Code écrit avec des agents, sprites générés puis affinés à la main</span></dd></div>
+          </dl>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- OTZI -->
+  <section class="wrap niveau" id="otzi" aria-labelledby="t-otzi">
+    <span class="tag numero">Niveau 2 · docu-fiction</span>
+    <h2 id="t-otzi">Ötzi</h2>
+    <div class="corps">
+      <div class="media">
+        <video src="media/otzi.mp4" poster="media/otzi.jpg" muted loop playsinline preload="none" controls aria-label="Extrait de l'introduction d'Ötzi"></video>
+      </div>
+      <div class="texte">
+        <p>L'introduction d'une docu-fiction sur Ötzi, l'homme des glaces. Le visage, les mains, la chasse et le village au crépuscule sont entièrement produits avec l'IA générative, sous ma direction artistique.</p>
+        <p>Le travail consiste à tenir le même personnage et la même lumière d'un plan à l'autre, ce que les modèles ne font pas d'eux-mêmes.</p>
+        <div class="fiche px">
+          <h3>Fiche</h3>
+          <dl>
+            <div><dt>Statut</dt><dd><span class="badge">En production</span></dd></div>
+            <div><dt>Rôle</dt><dd>Direction artistique et production complète des images</dd></div>
+            <div><dt>Part de l'IA</dt><dd><div class="ia" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i></div><span class="ia-lab">Images générées, choisies et montées à la main</span></dd></div>
+          </dl>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SAINT-ROMAN -->
+  <section class="wrap niveau" id="saint-roman" aria-labelledby="t-sr">
+    <span class="tag numero">Niveau 3 · jeu patrimonial</span>
+    <h2 id="t-sr">Secrets de Saint-Roman</h2>
+    <div class="corps">
+      <div class="media">
+        <figure><video src="media/saint-roman-falaises.mp4" poster="media/saint-roman-falaises.jpg" muted loop playsinline preload="none" controls aria-label="Extrait de Secrets de Saint-Roman, les falaises de l'abbaye"></video><figcaption>Extrait de la bande-annonce · <a href="https://youtu.be/MAhXbZYaXbQ" target="_blank" rel="noopener">bande-annonce complète sur YouTube</a></figcaption></figure>
+      </div>
+      <div class="texte">
+        <p>Un jeu mobile d'exploration de l'abbaye troglodyte de Saint-Roman, construit à partir du site réel. Il est publié sur l'App Store et Google Play pour l'abbaye, qui en est l'éditeur.</p>
+        <p>C'est une forme proche du serious game. Le public ne joue pas forcément, et le jeu doit d'abord transmettre un lieu. J'ai assuré la 3D, l'interface et la production jusqu'à la mise en ligne.</p>
+        <p>L'interface a été produite sous ComfyUI début 2025, à une époque où les modèles ne tenaient pas une forme. La reprise à la main était donc l'essentiel du travail.</p>
+        <div class="fiche px">
+          <h3>Fiche</h3>
+          <dl>
+            <div><dt>Statut</dt><dd><span class="badge">Publié</span> App Store, Google Play</dd></div>
+            <div><dt>Rôle</dt><dd>3D, interface, intégration, production</dd></div>
+            <div><dt>Outils</dt><dd>Houdini, ZBrush, ComfyUI</dd></div>
+            <div><dt>Part de l'IA</dt><dd><div class="ia" aria-hidden="true"><i class="on"></i><i></i><i></i></div><span class="ia-lab">Interface générée puis reprise à la main</span></dd></div>
+          </dl>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GEOFIT -->
+  <section class="wrap niveau" id="geofit" aria-labelledby="t-geofit">
+    <span class="tag numero">Niveau 4 · alternance chez GEOFIT</span>
+    <h2 id="t-geofit">Visites virtuelles temps réel</h2>
+    <div class="corps">
+      <div class="media">
+        <video src="media/louvre.mp4" poster="media/louvre.jpg" muted loop playsinline preload="none" controls aria-label="Visite virtuelle d'une salle du Louvre sous Unreal Engine 5"></video>
+        <figure><img src="media/gare-saint-exupery.jpg" alt="Vue aérienne de la gare de Lyon Saint-Exupéry reconstituée en 3D" loading="lazy"><figcaption>Gare de Lyon Saint-Exupéry</figcaption></figure>
+      </div>
+      <div class="texte">
+        <p>Deux ans d'alternance chez GEOFIT, dans le relevé 3D. Je transformais des nuages de points issus de scanners en modèles exploitables, puis en visites virtuelles sous Unreal Engine 5, dont le Louvre, la gare de Lyon Saint-Exupéry et l'abbaye de Nieul.</p>
+        <p>Pour les ornements que la chaîne standard restitue mal, colonnes et chapiteaux, j'ai mis au point une méthode sous Houdini et ZBrush, que j'ai réemployée ensuite sur Saint-Roman.</p>
+        <div class="fiche px">
+          <h3>Fiche</h3>
+          <dl>
+            <div><dt>Statut</dt><dd><span class="badge">Livré</span> 2022-2024</dd></div>
+            <div><dt>Rôle</dt><dd>Technicien nuages de points, alternance</dd></div>
+            <div><dt>Outils</dt><dd>Unreal Engine 5, Leica Register 360, Houdini, ZBrush</dd></div>
+            <div><dt>Part de l'IA</dt><dd><div class="ia" aria-hidden="true"><i></i><i></i><i></i></div><span class="ia-lab">Aucune</span></dd></div>
+          </dl>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BONUS -->
+  <section class="wrap niveau" id="bonus" aria-labelledby="t-bonus">
+    <span class="tag numero">Niveaux bonus</span>
+    <h2 id="t-bonus">Film et motion</h2>
+    <div class="bonus">
+      <article class="px-s">
+        <video class="film" src="media/vestiges-film.mp4" poster="media/vestiges.jpg" playsinline preload="none" controls aria-label="VESTIGES, film complet"></video>
+        <div class="txt"><h3>VESTIGES</h3><span class="s">2024 · film de fin d'études, MJM Graphic Design · 1 min 32</span><p>Court métrage d'animation réalisé sous Unreal Engine 5, de la modélisation au rendu. Film complet, avec le son.</p></div>
+      </article>
+      <article class="px-s">
+        <video src="media/shield.mp4" poster="media/shield.jpg" muted loop playsinline preload="none" controls aria-label="Extrait des visuels Shield Run"></video>
+        <div class="txt"><h3>Shield Run</h3><span class="s">Noct, Paris</span><p>Visuels 3D pour une soirée techno, en boucle sur écran.</p></div>
+      </article>
+    </div>
+  </section>
+
+  <!-- METHODE -->
+  <section class="wrap niveau" id="methode" aria-labelledby="t-methode">
+    <span class="tag numero">Comment je travaille avec l'IA</span>
+    <h2 id="t-methode">Méthode</h2>
+    <p class="chapeau">Les modèles changent tous les trois mois. Ce qui dure, c'est la façon de les encadrer. Voici celle que j'applique sur Tribute3D, montrée avec les fichiers réels du projet.</p>
+
+    <h3 class="sous">Un objet, de l'idée au jeu</h3>
+    <p class="sous-note">L'amphore runique du château, suivie étape par étape.</p>
+    <ol class="fab">
+      <li class="px-s etape-texte">
+        <span class="n">1</span>
+        <div class="etape-corps">
+          <h4>Charte</h4>
+          <p>Avant toute génération, une charte écrite fixe la direction artistique du lot.</p>
+          <blockquote>« La fonction explique la forme. Une silhouette principale et un détail distinctif par objet. »</blockquote>
+        </div>
+      </li>
+      <li class="px-s">
+        <span class="n">2</span>
+        <img src="media/methode-amphore-concept.jpg" alt="Concept de l'amphore runique, pierre sombre et rune rouge" loading="lazy">
+        <div class="etape-corps"><h4>Concept</h4><p>Une image par objet sur GPT Image 2. Le prompt est archivé avec l'image.</p></div>
+      </li>
+      <li class="px-s">
+        <span class="n">3</span>
+        <img src="media/methode-amphore-reference.jpg" alt="Version 3D détaillée de l'amphore" loading="lazy">
+        <div class="etape-corps"><h4>Source détaillée</h4><p>Le concept validé devient une 3D haute définition, générée avec Hunyuan3D.</p></div>
+      </li>
+      <li class="px-s">
+        <span class="n">4</span>
+        <img src="media/methode-amphore-wire.jpg" alt="Maillage basse définition de l'amphore en fil de fer" loading="lazy">
+        <div class="etape-corps"><h4>Remodélisation</h4><p>Je reconstruis les volumes à la main, sans décimation automatique. 888 triangles.</p></div>
+      </li>
+      <li class="px-s">
+        <span class="n">5</span>
+        <img src="media/methode-amphore-render.jpg" alt="Amphore finale texturée, prête pour le jeu" loading="lazy">
+        <div class="etape-corps"><h4>Cuisson</h4><p>Le détail de la source est cuit dans des textures PBR de 256 px, puis l'objet entre dans Godot.</p></div>
+      </li>
+    </ol>
+
+    <div class="revue">
+      <figure><img src="media/methode-chaise-v1.jpg" alt="Chaise cornue, première version avec une tête de démon sur le dossier" loading="lazy"><figcaption>Chaise, version 1</figcaption></figure>
+      <figure><img src="media/methode-chaise-v2.jpg" alt="Chaise cornue, version 2 sans la tête de démon" loading="lazy"><figcaption>Chaise, version 2</figcaption></figure>
+      <div class="revue-txt">
+        <h4>Entre l'étape 2 et l'étape 3, une revue</h4>
+        <p>Rien ne part en 3D sans validation de l'image. Ici, la tête de démon du dossier chargeait trop l'objet, elle a été retirée en version 2. Les versions écartées restent archivées, pour garder la trace de chaque décision.</p>
+      </div>
+    </div>
+
+    <h3 class="sous">Les outils, et ce qu'ils font vraiment pour moi</h3>
+    <p class="sous-note">J'adopte un modèle quand il progresse, et je le laisse quand un autre fait mieux.</p>
+    <div class="inventaire px">
+      <div class="ligne-outil">
+        <div class="role">Image</div>
+        <div class="items">
+          <div class="item"><span class="k">ComfyUI</span><span class="etat prod">en production</span><p>Depuis 2023. Des workflows en nœuds, rejouables. L'interface de Saint-Roman en est sortie début 2025.</p></div>
+          <div class="item"><span class="k">GPT Image 2</span><span class="etat prod">en production</span><p>Concepts d'objets et d'interface de Tribute3D, plus de mille images générées puis triées.</p></div>
+        </div>
+      </div>
+      <div class="ligne-outil">
+        <div class="role">Vidéo</div>
+        <div class="items">
+          <div class="item"><span class="k">Veo 3, Kling, Seedance</span><span class="etat passe">tour à tour</span><p>Adoptés l'un après l'autre au fil de leurs progrès, sur Ötzi et mes essais de réalisation.</p></div>
+          <div class="item"><span class="k">Minimax H3</span><span class="etat prod">aujourd'hui</span><p>Mon modèle vidéo actuel.</p></div>
+        </div>
+      </div>
+      <div class="ligne-outil">
+        <div class="role">3D</div>
+        <div class="items">
+          <div class="item"><span class="k">Hunyuan3D</span><span class="etat prod">en production</span><p>Sources haute définition des props, toujours remodélisées ensuite.</p></div>
+          <div class="item"><span class="k">Tripo3D, TripoSR, Trellis</span><span class="etat test">testés</span><p>Essayés sur des props. Pas retenus pour l'instant, le résultat ne tenait pas la charte.</p></div>
+        </div>
+      </div>
+      <div class="ligne-outil">
+        <div class="role">Son</div>
+        <div class="items">
+          <div class="item"><span class="k">Stable Audio 3</span><span class="etat prod">en production</span><p>Bruitages du jeu générés en couches dans ComfyUI, pilotés par script, graines conservées.</p></div>
+        </div>
+      </div>
+      <div class="ligne-outil">
+        <div class="role">Code</div>
+        <div class="items">
+          <div class="item"><span class="k">Claude Code, Codex</span><span class="etat prod">au quotidien</span><p>Les agents écrivent le code de Tribute3D. Je rédige les briefs, je relis, les tests tranchent.</p></div>
+          <div class="item"><span class="k">Ponts MCP</span><span class="etat prod">en production</span><p>Les agents pilotent Unreal, Blender et ComfyUI. Le niveau Unreal a été extrait ainsi vers Godot, soit 5 861 acteurs.</p></div>
+        </div>
+      </div>
+    </div>
+
+    <h3 class="sous">Trois règles du projet</h3>
+    <div class="methode">
+      <div class="regle px"><h4>Aucun chiffre sans mesure</h4><p>Chaque valeur du projet porte sa provenance, mesurée, relevée ou choisie. Un test ne compte que si on l'a d'abord vu échouer sur le défaut qu'il doit attraper.</p></div>
+      <div class="regle px"><h4>Tout est rejouable</h4><p>Prompts archivés, graines conservées, retouches scriptées. Le parchemin de l'interface de Tribute passe par un script qui réduit sa palette à 32 couleurs, sans lissage, et on peut le refaire à l'identique.</p></div>
+      <div class="regle px"><h4>La main a le dernier mot</h4><p>Je valide chaque concept, je remodélise chaque objet et j'affine chaque sprite. L'IA fournit une matière première, jamais un asset fini.</p></div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="wrap fin" id="contact" aria-labelledby="t-contact">
+    <h2 id="t-contact">Continuer la partie</h2>
+    <div class="contact px">
+      <img src="media/portrait.jpg" alt="Portrait de Louan Esnault">
+      <div>
+        <p>Je vis à Thouaré-sur-Loire, près de Nantes, et je suis disponible immédiatement.</p>
+        <div class="l">
+          <div><span>Tél. </span>06 95 86 79 78</div>
+          <div><span>Mail </span><a href="mailto:esnaultlouan@gmail.com">esnaultlouan@gmail.com</a></div>
+          <div><span>Site </span><a href="https://yugg.fr" target="_blank" rel="noopener">yugg.fr</a></div>
+          <div><span>LinkedIn </span><a href="https://www.linkedin.com/in/louan-esnault-3a131b21b" target="_blank" rel="noopener">louan-esnault</a></div>
+        </div>
+      </div>
+    </div>
+    <div class="pied tag"><span>Louan Esnault</span><span>Graphiste 3D &amp; IA générative</span></div>
+  </section>
+</main>
+
+<script>
+(function(){
+  var reduit = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var videos = document.querySelectorAll('video:not(.film)');
+  if (reduit) { videos.forEach(function(v){ v.removeAttribute('autoplay'); v.pause(); v.controls = true; }); return; }
+  if (!('IntersectionObserver' in window)) return;
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      var v = e.target;
+      if (e.isIntersecting) { v.preload = 'auto'; var p = v.play(); if (p && p.catch) p.catch(function(){}); }
+      else { v.pause(); }
+    });
+  }, { threshold: 0.35 });
+  videos.forEach(function(v){ io.observe(v); });
+})();
+</script>
+</body>
+</html>
