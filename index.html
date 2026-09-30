@@ -241,7 +241,7 @@ figcaption a{ color:var(--ambre); }
           <figure><img src="media/tribute-hub-portail.jpg" alt="Le village de Tribute3D la nuit, un personnage près d'un feu de camp, minicarte en parchemin" loading="lazy"><figcaption>Le village, point de départ</figcaption></figure>
           <figure><img src="media/tribute-03-vue-large.jpg" alt="L'arène, avec le classement et la minicarte" loading="lazy"><figcaption>L'arène et son classement en direct</figcaption></figure>
           <figure><img src="media/tribute-createur-rouge-sang.jpg" alt="Écran de création de personnage sur parchemin" loading="lazy"><figcaption>Créateur de personnage</figcaption></figure>
-          <figure><img src="media/tribute-interpellation-trahir.jpg" alt="Trois personnages dans un couloir, une fenêtre d'alliance ouverte" loading="lazy"><figcaption>Alliance et trahison entre joueurs</figcaption></figure>
+          <figure><img src="media/tribute-interpellation-trahir.jpg" alt="Trois personnages dans un couloir, une fenêtre d'alliance ouverte" loading="lazy"><figcaption>Alliance et trahison, entre joueurs comme avec les PNJ</figcaption></figure>
         </div>
         <div class="galerie">
           <figure><video src="media/tribute-unreal.mp4" poster="media/tribute-unreal.jpg" muted loop playsinline preload="none" controls aria-label="Premier prototype sous Unreal Engine"></video><figcaption>Premier prototype, sous Unreal Engine</figcaption></figure>
@@ -251,6 +251,7 @@ figcaption a{ color:var(--ambre); }
       <div class="texte">
         <p>Un battle royale multijoueur en 3D, jouable dans le navigateur, que je développe seul depuis deux mois. Vingt joueurs entrent dans le même donjon, revendiquent des salles, s'allient et se trahissent. La mort est définitive et chaque partie repart de zéro, dans l'esprit die and retry.</p>
         <p>Je l'ai commencé sous Unreal Engine, puis je suis passé sous Godot pour mieux travailler avec l'IA agentique. Des agents écrivent le code avec moi.</p>
+        <p>Les rivaux sont des PNJ autonomes, sur le même corps que le joueur. Ils ne réagissent qu'à ce qu'ils voient réellement. Ils décident seuls s'ils prennent une salle, s'équipent selon leur classe ou se replient pour se soigner, et retrouvent régulièrement leurs alliés. Ils acceptent ou refusent une alliance, se méfient d'un traître connu, et celui qu'on a trahi ne s'allie plus jamais à son traître de la manche.</p>
         <p>Le jeu a commencé en pixel art 2D, avec un outil d'édition animé que j'ai développé avec Claude dans Blender. Il est passé depuis en 3D. Les objets partent de concepts générés par IA, deviennent une 3D haute définition, puis passent en retopologie et en cuisson de textures. La section Méthode suit un objet de bout en bout. Je garde la direction artistique et la validation de chaque asset.</p>
         <p>Ce que le projet m'apprend, c'est que l'IA va vite mais ne tient pas un univers toute seule. La cohérence et la validation restent un travail d'artiste.</p>
         <div class="fiche px">
@@ -258,6 +259,7 @@ figcaption a{ color:var(--ambre); }
           <dl>
             <div><dt>Statut</dt><dd><span class="badge">En cours</span></dd></div>
             <div><dt>Rôle</dt><dd>Conception, art et direction du code, en solo</dd></div>
+            <div><dt>Systèmes</dt><dd>Multijoueur en ligne, PNJ autonomes, alliances et réputation, territoires</dd></div>
             <div><dt>Outils</dt><dd>Godot 4, Unreal Engine 5, Blender, Claude Code, Codex, GPT Image 2, Hunyuan3D</dd></div>
             <div><dt>Part de l'IA</dt><dd><div class="ia" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i></div><span class="ia-lab">Code écrit avec des agents, modèles 3D générés puis retopologisés</span></dd></div>
           </dl>
